@@ -3,7 +3,11 @@
 {% block content %}
 <ul class = "List-articles">
     {% for p in posts %}
-            <li><h2>{{p.title}}</h2>
+            <li><div class="article-panel">
+    <p class="first">Категории: {{p.cat}}</p>
+    <p class="last">Дата: {{p.time_update|date:'d-m-Y H:i:s'}}</p>            
+</div>                
+                <h2>{{p.title}}</h2>
         {% autoescape on %}        
         <p>{{p.content|linebreaks| truncatewords:30}}</p>
         {% endautoescape %}    

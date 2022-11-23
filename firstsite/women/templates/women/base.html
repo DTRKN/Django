@@ -3,9 +3,9 @@
 <html>
 <head>
 	<title>{{title}}</title>
-	<link type="text/css" href="{% static 'women/css/styles.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'women/css/styles1.css' %}" rel="stylesheet" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="shortcut icon" href="{% static 'women/images/main.ico' %}" type="image/x-icon"/>
+	<link rel="shortcut icon" href="{% static 'women/images/main1.ico' %}" type="image/x-icon"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -32,11 +32,21 @@
 <tr>
 <!-- Sidebar слева -->
 	<td valign="top" class="left-chapters">
-	<ul id="leftchapters">
+	<ul id="leftchapters"> 
+{% if cat_selected == 0 %}
 		<li class="selected">Все категории</li>
-		<li><a href="#">Актрисы</a></li>
-		<li><a href="#">Певицы</a></li>
-		<li><a href="#">Спортсменки</a></li>
+{% else %}
+		<li><a href="{% url 'home' %}">Все категории </a></li>
+{% endif %}
+
+{% for c in cats %}
+	{% if c.pk == cat_selected %}
+		<li class="selected">{{c.name}}</li>
+	{% else %}
+		<li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
+	{% endif %}
+{% endfor %}
+
 		<li class="share">
 		<p>Можешь посмотреть видосики</p>
 		<a class="share-yt" href="https://www.youtube.com/" target="_blank" rel="nofollow"></a>
