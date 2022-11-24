@@ -51,7 +51,7 @@ def show_category(request, cat_id):
         'posts': posts, 
         'menu': menu,
         'cats': cats, 
-        'title': 'Рубрикам',
+        'title': 'Актрисы',
         'cat_selected': cat_id,
     }
     return render(request, 'women/index.html', context=context)
