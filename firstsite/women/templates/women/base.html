@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>{{title}}</title>
-	<link type="text/css" href="{% static 'women/css/styles1.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'women/css/styleA.css' %}" rel="stylesheet" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="shortcut icon" href="{% static 'women/images/main1.ico' %}" type="image/x-icon"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,6 +64,34 @@
 	<div class="content-text">
 {% block content %}
 {% endblock %}
+{% if page_obj.has_other_pages %}
+<nav class="list-pages">
+	<ul>
+{% if page_obj.has_previous %}
+<li class="page-num">
+	<a href='?page={{ page_obj.previons_page_number }}'>&lt;</a>
+</li>
+{% endif %}
+
+		{% for p in paginator.page_range %}
+		{% if page_obj.number == p %}
+		<li class="page-num page-num-selected">{{ p }}</li>
+		{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}	
+		<li class="page-num">
+			<a href="?page={{ p }}">{{ p }}</a>
+		</li>
+		{% endif %}
+		{% endfor %}
+	
+{% if page_obj.has_next %}
+<li class="page-num">
+	<a href='?page={{ page_obj.next_page_number }}'>&gt;</a>
+</li>
+{% endif %}
+
+	</ul>
+</nav>
+{% endif %}
 	</div>
 <!-- Конец блока контента -->
 
