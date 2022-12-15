@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>{{title}}</title>
-	<link type="text/css" href="{% static 'women/css/styleA.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'women/css/stylee.css' %}" rel="stylesheet" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="shortcut icon" href="{% static 'women/images/main1.ico' %}" type="image/x-icon"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +35,7 @@
 <!-- Sidebar слева -->
 	<td valign="top" class="left-chapters">
 	<ul id="leftchapters"> 
+		
 {% if cat_selected == 0 %}
 		<li class="selected">Все категории</li>
 {% else %}
@@ -50,7 +51,6 @@
 	{% endif %}
 {% endif %}
 {% endfor %}
-
 		</li>
 	</ul>
 </td>
