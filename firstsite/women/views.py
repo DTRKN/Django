@@ -24,18 +24,12 @@ class WomenHome(DataMixin, ListView):
     def get_queryset(self):
         return Women.objects.filter(is_published=True).select_related('cat')
 
-def about(request):  
-    if not request.user.is_authenticated:
-        return render(request, 'women/about.html', { 'menu': menu.pop(0), 'title': 'О сайте'})
-    return render(request, 'women/about.html', { 'menu': menu.pop(0), 'title': 'О сайте'})
-
 class Addpage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
     template_name = 'women/addpage.html'
     success_url = reverse_lazy('home')
-    login_url = reverse_lazy('home')
-    raise_exception = True
-
+    login_url = '/admin/'
+    
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs) 
         c_def = self.get_user_context(title='Добавление статьи')
