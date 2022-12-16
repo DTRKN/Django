@@ -24,14 +24,10 @@ class WomenHome(DataMixin, ListView):
     def get_queryset(self):
         return Women.objects.filter(is_published=True).select_related('cat')
 
-def about(request):
-    contant_list = Women.objects.all()
-    paginator = Paginator(contant_list, 4)
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    return render(request, 'women/about.html', {'page_obj': page_obj, 'menu': menu, 'title': 'О сайте'})
+def about(request):  
+    if not request.user.is_authenticated:
+        return render(request, 'women/about.html', { 'menu': menu.pop(0), 'title': 'О сайте'})
+    return render(request, 'women/about.html', { 'menu': menu.pop(0), 'title': 'О сайте'})
 
 class Addpage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
@@ -61,6 +57,7 @@ class ContactFormView(DataMixin, FormView):
     def form_valid(self, form):
         print(form.cleaned_data)
         return redirect('home')
+
 # def login(request):
 #     return HttpResponse('Авторизация')
 
