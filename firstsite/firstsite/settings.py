@@ -144,3 +144,7 @@ CASHES = {
         'LOCATION': os.path.join(BASE_DIR, 'firstsite_cache'),
     }
 }
+
+RECAPTCHA_PUBLIC_KEY = 'key'
+RECAPTCHA_PRIVATE_KEY = 'secret'
+NOCAPTCHA = True
